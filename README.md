@@ -62,4 +62,6 @@ An iOS (Swift) application using the Light Blue Bean by Punch Through.  The Bean
 
 Using the Scosche Rhythm+ arm band heart rate monitor with an iOS (Swift) application.  This shows pairing iOS with a generic device using specified GAT UUIDs.  As the wearers heart rate changes, the sensor device notifies the iOS application.  The iOS application updates the screen with heart rate value from the sensor device.
 
-**TODO:** Send heart rate values to Watson IoT and/or store values in Cloudant (CouchDB).  Then have a web page that charts the values over time.
+At the same time, the iOS application also connects to Watson IoT (MQTT).  As new heart rate measurements arrive, the values are serialized into a JSON string, and published to a Watson IoT topic.
+
+**TODO:** Store values in Cloudant (CouchDB).  Then have a web page that charts the values over time.

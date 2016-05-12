@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A20BD301CE5171900396743 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A20BD2D1CE5171900396743 /* CocoaAsyncSocket.framework */; };
+		0A20BD311CE5171900396743 /* CocoaMQTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A20BD2E1CE5171900396743 /* CocoaMQTT.framework */; };
+		0A20BD341CE5171F00396743 /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A20BD2D1CE5171900396743 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A20BD361CE5171F00396743 /* CocoaMQTT.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A20BD2E1CE5171900396743 /* CocoaMQTT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A20BD371CE5171F00396743 /* MSWeakTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A20BD2F1CE5171900396743 /* MSWeakTimer.framework */; };
+		0A20BD381CE5171F00396743 /* MSWeakTimer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A20BD2F1CE5171900396743 /* MSWeakTimer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A20BD3B1CE5263E00396743 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A20BD3A1CE5263E00396743 /* Credentials.plist */; };
+		0A20BD3E1CE5310B00396743 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A20BD3C1CE5310100396743 /* SwiftyJSON.framework */; };
+		0A20BD3F1CE5310B00396743 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A20BD3C1CE5310100396743 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ADDD5BE1CE4DA0800B09D50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADDD5BD1CE4DA0800B09D50 /* AppDelegate.swift */; };
 		0ADDD5C01CE4DA0800B09D50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADDD5BF1CE4DA0800B09D50 /* ViewController.swift */; };
 		0ADDD5C31CE4DA0800B09D50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ADDD5C11CE4DA0800B09D50 /* Main.storyboard */; };
@@ -14,7 +23,29 @@
 		0ADDD5C81CE4DA0800B09D50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ADDD5C61CE4DA0800B09D50 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0A20BD391CE5171F00396743 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0A20BD3F1CE5310B00396743 /* SwiftyJSON.framework in Embed Frameworks */,
+				0A20BD361CE5171F00396743 /* CocoaMQTT.framework in Embed Frameworks */,
+				0A20BD381CE5171F00396743 /* MSWeakTimer.framework in Embed Frameworks */,
+				0A20BD341CE5171F00396743 /* CocoaAsyncSocket.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0A20BD2D1CE5171900396743 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
+		0A20BD2E1CE5171900396743 /* CocoaMQTT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaMQTT.framework; path = Carthage/Build/iOS/CocoaMQTT.framework; sourceTree = "<group>"; };
+		0A20BD2F1CE5171900396743 /* MSWeakTimer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSWeakTimer.framework; path = Carthage/Build/iOS/MSWeakTimer.framework; sourceTree = "<group>"; };
+		0A20BD3A1CE5263E00396743 /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
+		0A20BD3C1CE5310100396743 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		0ADDD5BA1CE4DA0800B09D50 /* Rhythm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rhythm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ADDD5BD1CE4DA0800B09D50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ADDD5BF1CE4DA0800B09D50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,15 +60,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A20BD311CE5171900396743 /* CocoaMQTT.framework in Frameworks */,
+				0A20BD371CE5171F00396743 /* MSWeakTimer.framework in Frameworks */,
+				0A20BD301CE5171900396743 /* CocoaAsyncSocket.framework in Frameworks */,
+				0A20BD3E1CE5310B00396743 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A20BD221CE515F500396743 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0A20BD3C1CE5310100396743 /* SwiftyJSON.framework */,
+				0A20BD2D1CE5171900396743 /* CocoaAsyncSocket.framework */,
+				0A20BD2E1CE5171900396743 /* CocoaMQTT.framework */,
+				0A20BD2F1CE5171900396743 /* MSWeakTimer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0ADDD5B11CE4DA0800B09D50 = {
 			isa = PBXGroup;
 			children = (
+				0A20BD221CE515F500396743 /* Frameworks */,
 				0ADDD5BC1CE4DA0800B09D50 /* Rhythm */,
 				0ADDD5BB1CE4DA0800B09D50 /* Products */,
 			);
@@ -60,6 +107,7 @@
 				0ADDD5C41CE4DA0800B09D50 /* Assets.xcassets */,
 				0ADDD5C61CE4DA0800B09D50 /* LaunchScreen.storyboard */,
 				0ADDD5C91CE4DA0800B09D50 /* Info.plist */,
+				0A20BD3A1CE5263E00396743 /* Credentials.plist */,
 			);
 			path = Rhythm;
 			sourceTree = "<group>";
@@ -74,6 +122,7 @@
 				0ADDD5B61CE4DA0800B09D50 /* Sources */,
 				0ADDD5B71CE4DA0800B09D50 /* Frameworks */,
 				0ADDD5B81CE4DA0800B09D50 /* Resources */,
+				0A20BD391CE5171F00396743 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,6 +173,7 @@
 			files = (
 				0ADDD5C81CE4DA0800B09D50 /* LaunchScreen.storyboard in Resources */,
 				0ADDD5C51CE4DA0800B09D50 /* Assets.xcassets in Resources */,
+				0A20BD3B1CE5263E00396743 /* Credentials.plist in Resources */,
 				0ADDD5C31CE4DA0800B09D50 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +299,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Rhythm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.us.Rhythm;
@@ -260,6 +314,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Rhythm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.us.Rhythm;
@@ -286,6 +344,7 @@
 				0ADDD5CE1CE4DA0800B09D50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
