@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Bean
-//
-//  Created by Kevin Hoyt on 5/5/16.
-//  Copyright © 2016 IBM. All rights reserved.
-//
-
 // (1) Bluetooth
 import CoreBluetooth
 import UIKit
@@ -20,6 +12,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var peripheral:CBPeripheral!
     
     // (4) UUID, name
+    // Name specified on Bean configuration
+    // UUID from documentation for scrtch data (service, characteristic)
     let BEAN_NAME = "Robu"
     let BEAN_SCRATCH_UUID = CBUUID(string: "a495ff21-c5b1-4b44-b512-1370f02d74de")
     let BEAN_SERVICE_UUID = CBUUID(string: "a495ff20-c5b1-4b44-b512-1370f02d74de")
@@ -48,14 +42,18 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
         let device = (advertisementData as NSDictionary).objectForKey(CBAdvertisementDataLocalNameKey) as? NSString
         
+        // Only to specific Bean
         if device?.containsString(BEAN_NAME) == true {
             debugPrint("Found Bean.")
             
+            // No longer need to scan
             self.manager.stopScan()
             
+            // Store reference to Bean
             self.peripheral = peripheral
             self.peripheral.delegate = self
             
+            // Connect
             manager.connectPeripheral(peripheral, options: nil)
         }
     }
@@ -73,7 +71,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             
             debugPrint("Service: ", service.UUID)
             
-            // Scratch
+            // Scratch data service
             if service.UUID == BEAN_SERVICE_UUID {
                 debugPrint("Using Scratch.")
                 peripheral.discoverCharacteristics(nil, forService: thisService)
@@ -90,7 +88,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             
             debugPrint("Characteristic: ", thisCharacteristic.UUID)
             
-            // Scratch
+            // Scratch data characteristic
             if thisCharacteristic.UUID == BEAN_SCRATCH_UUID {
                 debugPrint("Set to notify: ", thisCharacteristic.UUID)
                 
@@ -106,13 +104,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     // (11) Change notifications
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-        // Scratch
+        // Scratch data characteristic
         if characteristic.UUID == BEAN_SCRATCH_UUID {
             var count:UInt32 = 0;
             
             // NSData to long
             characteristic.value!.getBytes(&count, length: sizeof(UInt32))
             
+            // Populate value
             labelCount.text = NSString(format: "%llu", count) as String
         }
     }
@@ -121,10 +120,11 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         debugPrint("Disconnected.")
         
+        // Scan
         central.scanForPeripheralsWithServices(nil, options: nil)
         
+        // Hide UI
         labelCount.hidden = true;
     }
     
 }
-

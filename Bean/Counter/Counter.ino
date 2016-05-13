@@ -1,10 +1,14 @@
+// Counting
 long count = 0;
 
+// Setup
 void setup() {
   // Only count while connected
+  // Saves battery
   Bean.enableWakeOnConnect( true );  
 }
 
+// Loop
 void loop() {
   // Check for connection
   bool connected = Bean.getConnectionState();
