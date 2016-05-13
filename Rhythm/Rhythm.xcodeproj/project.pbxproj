@@ -16,6 +16,7 @@
 		0A20BD3B1CE5263E00396743 /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A20BD3A1CE5263E00396743 /* Credentials.plist */; };
 		0A20BD3E1CE5310B00396743 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A20BD3C1CE5310100396743 /* SwiftyJSON.framework */; };
 		0A20BD3F1CE5310B00396743 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A20BD3C1CE5310100396743 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A95B2281CE63B2400885A30 /* WatsonIoT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95B2271CE63B2400885A30 /* WatsonIoT.swift */; };
 		0ADDD5BE1CE4DA0800B09D50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADDD5BD1CE4DA0800B09D50 /* AppDelegate.swift */; };
 		0ADDD5C01CE4DA0800B09D50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADDD5BF1CE4DA0800B09D50 /* ViewController.swift */; };
 		0ADDD5C31CE4DA0800B09D50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ADDD5C11CE4DA0800B09D50 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		0A20BD2F1CE5171900396743 /* MSWeakTimer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSWeakTimer.framework; path = Carthage/Build/iOS/MSWeakTimer.framework; sourceTree = "<group>"; };
 		0A20BD3A1CE5263E00396743 /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credentials.plist; sourceTree = "<group>"; };
 		0A20BD3C1CE5310100396743 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		0A95B2271CE63B2400885A30 /* WatsonIoT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatsonIoT.swift; sourceTree = "<group>"; };
 		0ADDD5BA1CE4DA0800B09D50 /* Rhythm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rhythm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ADDD5BD1CE4DA0800B09D50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ADDD5BF1CE4DA0800B09D50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				0ADDD5C61CE4DA0800B09D50 /* LaunchScreen.storyboard */,
 				0ADDD5C91CE4DA0800B09D50 /* Info.plist */,
 				0A20BD3A1CE5263E00396743 /* Credentials.plist */,
+				0A95B2271CE63B2400885A30 /* WatsonIoT.swift */,
 			);
 			path = Rhythm;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			files = (
 				0ADDD5C01CE4DA0800B09D50 /* ViewController.swift in Sources */,
 				0ADDD5BE1CE4DA0800B09D50 /* AppDelegate.swift in Sources */,
+				0A95B2281CE63B2400885A30 /* WatsonIoT.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

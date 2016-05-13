@@ -15,11 +15,10 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     @IBOutlet weak var labelHeart: UILabel!
     
-    var mqtt:CocoaMQTT?
-    
     var credentials:NSDictionary!
     var manager:CBCentralManager!
     var peripheral:CBPeripheral!
+    var watson:WatsonIoT!
     
     let CREDENTIALS_PATH = NSBundle.mainBundle().pathForResource("Credentials", ofType: "plist")
     let RHYTHM_ARM_BAND = "RHYTHM+"
@@ -29,22 +28,25 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // UI
+        labelHeart.hidden = true
+        
         // External credentials
         credentials = NSDictionary(contentsOfFile: CREDENTIALS_PATH!)
         
-        labelHeart.hidden = true
-        
-        manager = CBCentralManager(delegate: self, queue: nil)
-        
-        mqtt = CocoaMQTT(
-            clientId: (credentials.valueForKey("IoT Client") as? String)!,
+        // Watson
+        watson = WatsonIoT(
+            withClientId: (credentials.valueForKey("IoT Client") as? String)!,
             host: (credentials.valueForKey("IoT Host") as? String)!,
-            port: UInt16((credentials["IoT Port"]?.intValue)!)
+            port: NSNumber(int: (credentials["IoT Port"]?.intValue)!)
         )
-        mqtt?.username = (credentials.valueForKey("IoT User") as? String)!
-        mqtt?.password = (credentials.valueForKey("IoT Password") as? String)!
-        mqtt?.delegate = self
-        mqtt?.connect()
+        watson.connect(
+            (credentials.valueForKey("IoT User") as? String)!,
+            password: (credentials.valueForKey("IoT Password") as? String)!
+        )
+        
+        // BLE
+        manager = CBCentralManager(delegate: self, queue: nil)
     }
 
     func centralManagerDidUpdateState(central: CBCentralManager) {
@@ -59,14 +61,20 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
         let device = (advertisementData as NSDictionary).objectForKey(CBAdvertisementDataLocalNameKey) as? NSString
         
+        // Find Rhythm heart rate monitor
         if device?.containsString(RHYTHM_ARM_BAND) == true {
             debugPrint("Found Rythym.")
             
+            
+            // Found
+            // Stop scan
             self.manager.stopScan()
             
+            // Store reference to device
             self.peripheral = peripheral
             self.peripheral.delegate = self
             
+            // Connect to device
             manager.connectPeripheral(peripheral, options: nil)
         }
     }
@@ -123,19 +131,22 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             
             labelHeart.text = NSString(format: "%llu", count) as String
             
+            // Send to Watson
+            // Assemble dictionary of parameters
             let parameters = [
                 "bpm": NSNumber(unsignedShort: count),
             ]
-            
+
             do {
+                // Assemble JSON
                 let data = try NSJSONSerialization.dataWithJSONObject(parameters, options: [])
                 let json = NSString(data: data, encoding: NSUTF8StringEncoding)
-                let message = CocoaMQTTMessage(
-                    topic: (credentials.valueForKey("IoT Topic") as? String)!,
-                    string: json! as String
+
+                // Publish
+                watson.publish(
+                    (credentials.valueForKey("IoT Topic") as? String)!,
+                    message: json! as String
                 )
-                
-                mqtt?.publish(message)
             } catch let error as NSError {
                 debugPrint(error)
             }
@@ -145,66 +156,11 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         debugPrint("Disconnected.")
         
-        central.scanForPeripheralsWithServices(nil, options: nil)
-        
+        // UI
         labelHeart.hidden = true;
-    }
-    
-}
-
-extension ViewController: CocoaMQTTDelegate {
-    
-    func mqtt(mqtt: CocoaMQTT, didConnect host: String, port: Int) {
-        print("Connected.")
-    }
-    
-    func mqtt(mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
-        print("Connect acknowledge.")
         
-        /*
-         if ack == .ACCEPT {
-         mqtt.subscribe(Constants.IOT_TOPIC)
-         mqtt.ping()
-         }
-         */
-    }
-    
-    func mqtt(mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {
-        print("Publish: \(message.string!)")
-    }
-    
-    func mqtt(mqtt: CocoaMQTT, didPublishAck id: UInt16) {
-        print("Publish acknowledge.")
-    }
-    
-    func mqtt(mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
-        /*
-         if let data = message.string!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-         let json = JSON(data: data)
-         print("Count: \(json["count"])")
-         }
-         */
-    }
-    
-    func mqtt(mqtt: CocoaMQTT, didSubscribeTopic topic: String) {
-        print("Subscribed.")
-    }
-    
-    func mqtt(mqtt: CocoaMQTT, didUnsubscribeTopic topic: String) {
-        print("didUnsubscribeTopic to \(topic)")
-    }
-    
-    func mqttDidPing(mqtt: CocoaMQTT) {
-        print("Ping.")
-    }
-    
-    func mqttDidReceivePong(mqtt: CocoaMQTT) {
-        print("Pong.")
-    }
-    
-    func mqttDidDisconnect(mqtt: CocoaMQTT, withError err: NSError?) {
-        print("Disconnect.")
+        // Scan again
+        central.scanForPeripheralsWithServices(nil, options: nil)
     }
     
 }
-
