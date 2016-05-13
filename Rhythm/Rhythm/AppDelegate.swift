@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Rhythm
-//
-//  Created by Kevin Hoyt on 5/12/16.
-//  Copyright © 2016 IBM. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
