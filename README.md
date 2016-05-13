@@ -65,3 +65,11 @@ Using the Scosche Rhythm+ arm band heart rate monitor with an iOS (Swift) applic
 At the same time, the iOS application also connects to Watson IoT (MQTT).  As new heart rate measurements arrive, the values are serialized into a JSON string, and published to a Watson IoT topic.
 
 **TODO:** Store values in Cloudant (CouchDB).  Add charting to web page.
+
+##Tag
+
+Working with a Texas Instruments SensorTag product using Bluetooth LE from iOS (Swift).  The SensorTag can actually be changed to three different radio types, one of which (the default) is Bluetooth Smart.  The SensorTag is also packed with a number of sensors, as well as output controls such as a buzzer and different color LEDs.  This makes it ideal for getting started when learning BLE.
+
+This example shows interrogating multiple SensorTag services as the same time.
+
+**TODO:** Add controlling an LED or buzzer from iOS.
