@@ -1,0 +1,38 @@
+.circle {
+    background-color: rgba( 255, 255, 255, 0.60 );
+    border: solid 1px white;
+    border-radius: 100px;
+    bottom: 0;
+    height: 100px;
+    position: absolute;
+    visibility: hidden;
+    width: 100px;
+}
+
+.left {
+    left: 0;
+    transform: translate( -50px, 50px );
+}
+
+.location {
+    position: absolute;
+    height: 150px;
+}
+
+.right {
+    right: 0;
+    transform: translate( 50px, 50px );    
+}
+
+.stage {
+    background-image: url( 'stage.jpg' );
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    right: 0;
+    top: 0;
+}
