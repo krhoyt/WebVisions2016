@@ -2,3 +2,6 @@ Credentials.plist
 Carthage/
 Cartfile.resolved
 config.js
+watson-iot.txt
+Pods/
+*.lock

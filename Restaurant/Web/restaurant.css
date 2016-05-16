@@ -1,0 +1,121 @@
+body {
+    font-family: 'Open Sans', sans-serif;    
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}    
+    
+.adventure {
+    position: absolute;
+    top: 0;
+}
+
+.and {
+    cursor: default;
+    color: white;
+    font-size: 400px;
+    font-weight: 800;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;   
+    text-align: center;
+}    
+    
+.bar {
+    background-color: #47484b;
+    padding-top: 5px;
+    position: absolute;
+    top: 0;
+}        
+    
+.beer {
+    background-image:  url( beer.jpg );
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    right: 0;    
+    top: 0;
+}
+
+.beer p {
+    bottom: 50px;    
+    color: white;
+    cursor: default;
+    font-size: 4em;
+    font-weight: 800;
+    margin: 0;
+    position: absolute;
+    right: 50px;    
+}    
+    
+.burgers {
+    background-image: url( burger.jpg );
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;    
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+ 
+.burgers p {
+    color: white;
+    cursor: default;
+    font-size: 4em;
+    font-weight: 800;
+    left: 50px;
+    margin: 0;
+    position: absolute;
+    top: 50px;
+}    
+    
+.kitchen {
+    background-color: #47484b;
+    padding-top: 5px;    
+    position: absolute;
+    top: 0;
+}    
+    
+.question {
+    position: absolute;
+    top: 0;
+}
+    
+.row {
+    display: flex; 
+    flex-direction: row; 
+    left: 0; 
+    right: 0; 
+    top: 0; 
+    font-family: 'Source Code Pro', sans-serif; 
+    color: white; 
+    font-weight: 600; 
+    margin-left: 20px; 
+    margin-right: 20px;        
+}
+    
+.row p {
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+}    
+    
+.row p:first-of-type {
+    color: cyan;
+}    
+    
+.row p:last-of-type {
+    color: greenyellow;
+}
+    
+.row .item {
+    flex-grow: 1;
+    padding-left: 40px;        
+}
+    
+.template {
+    display: none;
+}

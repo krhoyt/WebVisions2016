@@ -1,0 +1,51 @@
+.and {
+    color: darkcyan;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15em;
+    font-weight: 600;
+    line-height: 300px;
+    margin: 0;
+    padding: 0;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.beer {
+    background-color: darkcyan;
+    border-radius: 300px;
+    height: 300px;
+    width: 300px;
+}    
+
+.burgers {
+    background-color: darkcyan;
+    border-radius: 300px;
+    height: 300px;
+    width: 300px;
+}
+
+.count {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10em;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.label {
+    color: white;
+    font-family: 'Open Sans', sans-serif;        
+    font-size: 2em;
+    margin: 0;
+    margin-top: -20px;
+    padding: 0;
+    text-align: center;        
+    text-transform: uppercase;
+}
+
+.sum {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
