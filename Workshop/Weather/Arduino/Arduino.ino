@@ -137,7 +137,6 @@ void wspeedIRQ()
 void setup()
 {
   Serial.begin(9600);
-  Serial.println("Weather Shield Example");
 
   ss.begin(9600); //Begin listening to GPS over software serial at 9600. This should be the default baud of the module.
 
@@ -171,9 +170,6 @@ void setup()
 
   // turn on interrupts
   interrupts();
-
-  Serial.println("Weather Shield online!");
-
 }
 
 void loop()
