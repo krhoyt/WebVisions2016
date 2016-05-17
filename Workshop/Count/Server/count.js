@@ -43,6 +43,6 @@ arduino.on( 'data', function( data ) {
 	
 	// Publish count value to broker
 	client.publish( config.topic, JSON.stringify( {
-		count: data
+		count: parseInt( data )
 	} ) );
 } );

@@ -39,10 +39,10 @@ arduino.on( 'open', function () {
 
 // Log incoming data
 arduino.on( 'data', function( data ) {
-    console.log( 'Moisture: ' + data );
+    console.log( 'Dust: ' + data );
 	
-	// Publish soil moisture value to broker
+	// Publish air quality to broker
 	client.publish( config.topic, JSON.stringify( {
-		soil: parseInt( data )
+		dust: parseFloat( data )
 	} ) );
 } );
