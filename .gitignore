@@ -5,3 +5,5 @@ config.js
 watson-iot.txt
 Pods/
 *.lock
+config.json
+node_modules/

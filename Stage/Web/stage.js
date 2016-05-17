@@ -32,8 +32,7 @@ function doStageArrived( message ) {
         for( var c = 0; c < element.length; c++ ) {
             element[c].style.visibility = 'hidden';
         }
-    }
-    
+    }    
 }	
 	
 function doWindowLoad() {

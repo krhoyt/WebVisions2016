@@ -29,9 +29,6 @@ TinyGPSPlus gps;
 static const int RXPin = 5, TXPin = 4; //GPS is attached to pin 4(TX from GPS) and pin 5(RX into GPS)
 SoftwareSerial ss(RXPin, TXPin); 
 
-// static const int RXImp = 8, TXImp = 9; //Imp is attached to pin 8 and pin 9
-// SoftwareSerial imp(RXImp, TXImp);
-
 MPL3115A2 myPressure; //Create an instance of the pressure sensor
 HTU21D myHumidity; //Create an instance of the humidity sensor
 
@@ -140,9 +137,9 @@ void wspeedIRQ()
 void setup()
 {
   Serial.begin(9600);
+  Serial.println("Weather Shield Example");
 
   ss.begin(9600); //Begin listening to GPS over software serial at 9600. This should be the default baud of the module.
-  // imp.begin(19200); //Begin communicating with Imp over software serial at 19200.
 
   pinMode(STAT1, OUTPUT); //Status LED Blue
   pinMode(STAT2, OUTPUT); //Status LED Green
@@ -175,7 +172,8 @@ void setup()
   // turn on interrupts
   interrupts();
 
-  // Serial.println("Weather Shield online!");
+  Serial.println("Weather Shield online!");
+
 }
 
 void loop()
@@ -225,7 +223,6 @@ void loop()
 
     //Report all readings every second
     printWeather();
-    // sendWeather();
 
     digitalWrite(STAT1, LOW); //Turn off stat LED
   }
@@ -237,15 +234,6 @@ void loop()
 static void smartdelay(unsigned long ms)
 {
   unsigned long start = millis();
-
-  /*
-  do 
-  {
-    while (Serial.available())
-      gps.encode(Serial.read());
-  } while (millis() - start < ms);  
-  */
-
   do 
   {
     while (ss.available())
@@ -424,7 +412,7 @@ void printWeather()
   Serial.print(winddir);
   Serial.print(",windspeedmph=");
   Serial.print(windspeedmph, 1);
-  Serial.print(",windgustmph=");
+  /*Serial.print(",windgustmph=");
   Serial.print(windgustmph, 1);
   Serial.print(",windgustdir=");
   Serial.print(windgustdir);
@@ -435,7 +423,7 @@ void printWeather()
   Serial.print(",windgustmph_10m=");
   Serial.print(windgustmph_10m, 1);
   Serial.print(",windgustdir_10m=");
-  Serial.print(windgustdir_10m);
+  Serial.print(windgustdir_10m);*/
   Serial.print(",humidity=");
   Serial.print(humidity, 1);
   Serial.print(",tempf=");
@@ -468,67 +456,8 @@ void printWeather()
   Serial.print(",time=");
   sprintf(sz, "%02d:%02d:%02d", gps.time.hour(), gps.time.minute(), gps.time.second());
   Serial.println(sz);
+
 }
 
-/*
-//Sends the various variables to the Imp
-//I don't like the way this function is written but Arduino doesn't support floats under sprintf
-void sendWeather()
-{
-  calcWeather(); //Go calc all the various sensors
 
-  imp.println();
-  imp.print("$,winddir=");
-  imp.print(winddir);
-  imp.print(",windspeedmph=");
-  imp.print(windspeedmph, 1);
-  imp.print(",windgustmph=");
-  imp.print(windgustmph, 1);
-  imp.print(",windgustdir=");
-  imp.print(windgustdir);
-  imp.print(",windspdmph_avg2m=");
-  imp.print(windspdmph_avg2m, 1);
-  imp.print(",winddir_avg2m=");
-  imp.print(winddir_avg2m);
-  imp.print(",windgustmph_10m=");
-  imp.print(windgustmph_10m, 1);
-  imp.print(",windgustdir_10m=");
-  imp.print(windgustdir_10m);
-  imp.print(",humidity=");
-  imp.print(humidity, 1);
-  imp.print(",tempf=");
-  imp.print(tempf, 1);
-  imp.print(",rainin=");
-  imp.print(rainin, 2);
-  imp.print(",dailyrainin=");
-  imp.print(dailyrainin, 2);
-  imp.print(",pressure=");
-  imp.print(pressure, 2);
-  imp.print(",batt_lvl=");
-  imp.print(batt_lvl, 2);
-  imp.print(",light_lvl=");
-  imp.print(light_lvl, 2);
-
-  imp.print(",lat=");
-  imp.print(gps.location.lat(), 6);
-  imp.print(",lng=");
-  imp.print(gps.location.lng(), 6);
-  imp.print(",altitude=");
-  imp.print(gps.altitude.meters());
-  imp.print(",sats=");
-  imp.print(gps.satellites.value());
-
-  char sz[32];
-  imp.print(",date=");
-  sprintf(sz, "%02d/%02d/%02d", gps.date.month(), gps.date.day(), gps.date.year());
-  imp.print(sz);
-
-  imp.print(",time=");
-  sprintf(sz, "%02d:%02d:%02d", gps.time.hour(), gps.time.minute(), gps.time.second());
-  imp.print(sz);
-
-  imp.print(",");
-  imp.println("#");
-}
-*/
 
