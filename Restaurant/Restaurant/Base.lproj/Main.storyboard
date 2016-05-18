@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -18,26 +19,81 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n60-Ff-iLS">
-                                <rect key="frame" x="284" y="0.0" width="32" height="30"/>
-                                <state key="normal" title="Beer"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zno-8c-gUm">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="40"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="28" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Burgers" backgroundImage="burger">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didBurgerDown:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B88-By-bIW"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bO5-rB-j1c">
-                                <rect key="frame" x="277" y="70" width="47" height="30"/>
-                                <state key="normal" title="Burger"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMH-Kg-Rkw">
+                                <rect key="frame" x="0.0" y="300" width="600" height="300"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="40"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="8"/>
+                                <state key="normal" title="Beer" backgroundImage="beer">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didBeerDown:" destination="BYZ-38-t0r" eventType="touchDown" id="Z7j-Gd-eF3"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&amp;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQT-NS-d5P">
+                                <rect key="frame" x="227" y="180" width="147" height="239"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="200"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tA3-Rp-hAM">
+                                <rect key="frame" x="530" y="275" width="50" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGx-qD-6dg">
+                                        <rect key="frame" x="13" y="15" width="25" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="lGx-qD-6dg" firstAttribute="centerX" secondItem="tA3-Rp-hAM" secondAttribute="centerX" id="RLb-g8-8co"/>
+                                    <constraint firstAttribute="height" constant="50" id="fJ8-Xu-Xc4"/>
+                                    <constraint firstItem="lGx-qD-6dg" firstAttribute="centerY" secondItem="tA3-Rp-hAM" secondAttribute="centerY" id="gqi-j2-TKY"/>
+                                    <constraint firstAttribute="width" constant="50" id="k5S-o9-aTs"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bO5-rB-j1c" firstAttribute="top" secondItem="n60-Ff-iLS" secondAttribute="bottom" constant="40" id="5ac-yh-1E0"/>
-                            <constraint firstItem="bO5-rB-j1c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LxJ-BM-ihh"/>
-                            <constraint firstItem="n60-Ff-iLS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="pcM-wC-ylb"/>
-                            <constraint firstItem="n60-Ff-iLS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rzD-FQ-hvL"/>
+                            <constraint firstItem="Zno-8c-gUm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="GNz-Ze-BvB"/>
+                            <constraint firstItem="OQT-NS-d5P" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JpR-5u-qfB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bMH-Kg-Rkw" secondAttribute="trailing" constant="-20" id="Mkd-bc-byO"/>
+                            <constraint firstItem="bMH-Kg-Rkw" firstAttribute="top" secondItem="Zno-8c-gUm" secondAttribute="bottom" id="Nxh-jp-Pk0"/>
+                            <constraint firstItem="tA3-Rp-hAM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="UK4-xr-f95"/>
+                            <constraint firstItem="bMH-Kg-Rkw" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="centerYWithinMargins" id="Wam-dj-jwb"/>
+                            <constraint firstItem="tA3-Rp-hAM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Xur-Rr-E4Q"/>
+                            <constraint firstItem="OQT-NS-d5P" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aXd-N0-X0Z"/>
+                            <constraint firstItem="Zno-8c-gUm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="d7J-1L-viX"/>
+                            <constraint firstItem="bMH-Kg-Rkw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="f4W-aw-nnb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zno-8c-gUm" secondAttribute="trailing" constant="-20" id="i9S-B3-2sh"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bMH-Kg-Rkw" secondAttribute="bottom" id="jcI-l6-172"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="labelTable" destination="lGx-qD-6dg" id="ujK-VC-P0S"/>
+                        <outlet property="viewTable" destination="tA3-Rp-hAM" id="C6t-is-DBa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="248" y="301"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="beer" width="500" height="500"/>
+        <image name="burger" width="500" height="500"/>
+    </resources>
 </document>
