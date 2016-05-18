@@ -1,24 +1,34 @@
 #include <OneWire.h> 
 
-int DS18S20 = 7;
+// Temperature sensor pin
+const int DS18S20 = 7;
 
-OneWire ds(DS18S20);
+// Sensor
+OneWire ds( DS18S20 );
 
+// Setup serial
 void setup( void ) {
   Serial.begin( 9600 );
 }
 
+// Infinite
 void loop( void ) {
+  // Get calculated temperature
+  // Convert celcius to fahrenheit
   float celcius = getTemp();
   float fahrenheit = ( celcius * 1.8 ) + 32;
-  
+
+  // Send results over serial (USB)
   Serial.print( celcius );
   Serial.print( "," );
   Serial.println( fahrenheit );
-  
+
+  // Wait a second
   delay( 1000 );  
 }
 
+// Returns temperature celcius
+// http://bildr.org/2011/07/ds18b20-arduino/
 float getTemp() {
   byte data[12];
   byte addr[8];
