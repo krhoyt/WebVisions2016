@@ -58,6 +58,10 @@ An iOS (Swift) application using the Light Blue Bean by Punch Through.  The Bean
 
 **TODO:** Additional example using I2C sensor.  Requires battery considerations.
 
+##Restaurant
+
+Rough, first-pass, demonstration at using a smartphone, plus beacons, to replace the Ziosk tablet ordering system (commonly found in chains such as Chili's).  Beacon specifies the store and table for the customer location.  Ordering is routed through Watson IoT to point of sale (POS) systems.  Uses publish/subscribe to make easier to wire into other systems.  Includes a basic dashboard to show management/business side of viewing the data.
+
 ##Rhythm
 
 Using the Scosche Rhythm+ arm band heart rate monitor with an iOS (Swift) application.  This shows pairing iOS with a generic device using specified GAT UUIDs.  As the wearers heart rate changes, the sensor device notifies the iOS application.  The iOS application updates the screen with heart rate value from the sensor device.
