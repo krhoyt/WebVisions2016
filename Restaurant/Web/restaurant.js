@@ -1,3 +1,14 @@
+// Constants for connectivity
+var IOT_CLIENT = 'a:ts200f:emp';
+var ITEM_BEER = 900;
+var ITEM_BURGER = 800;
+var TOPIC_STORE = 'iot-2/type/iOS/id/WebVisions/evt/store18260/fmt/json';
+var TOPIC_PHOTON = 'iot-2/type/Photon/id/WebVisions/evt/store100/fmt/json'
+
+// Constants for menu
+var VIEW_BEER = 'beer';
+var VIEW_BURGERS = 'burgers';
+
 // Application
 var client;    
 var view;
@@ -56,7 +67,7 @@ function doBurgersSelect() {
 // Connected to IBM IoT Platform
 function doClientConnect( context ) {
     console.log( 'Connect.' );
-    client.subscribe( TOPIC_IOS );    
+    client.subscribe( TOPIC_STORE );    
     client.subscribe( TOPIC_PHOTON );        
 }    
     
