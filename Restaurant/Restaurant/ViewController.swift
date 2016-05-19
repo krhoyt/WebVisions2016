@@ -9,7 +9,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var viewTable: UIView!
     
     let BEACON_IDENTIFIER = "com.ibm"
-    let BEACON_UUID = NSUUID(UUIDString: "A495DE30-C5B1-4B44-B512-1370F02D74DE")
+    let BEACON_UUID = NSUUID(UUIDString: "DAEE8ED6-73C8-47C2-A2F2-5491E44E9A97")
     let CREDENTIALS_PATH = NSBundle.mainBundle().pathForResource("Credentials", ofType: "plist")
     
     var region: CLBeaconRegion!
@@ -73,7 +73,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             "item": 900,
             "name": "Beer",
             "price": 1.23,
-            "table": table.integerValue
+            "table": table.integerValue / 10
         ]
         
         do {
@@ -95,7 +95,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             "item": 800,
             "name": "Burger",
             "price": 12.34,
-            "table": table.integerValue
+            "table": table.integerValue / 10
         ]
         
         do {
@@ -124,7 +124,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         table = beacon.minor
                         
                         // Display table number on screen
-                        labelTable.text = table.stringValue
+                        labelTable.text = String(table.integerValue / 10)
                         viewTable.hidden = false
                         
                         // Publish topic dependent on store number
