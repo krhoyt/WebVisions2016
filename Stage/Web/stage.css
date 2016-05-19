@@ -1,27 +1,18 @@
-.circle {
+.callout {
     background-color: rgba( 255, 255, 255, 0.60 );
-    border: solid 1px white;
-    border-radius: 100px;
+    border: none;
     bottom: 0;
-    height: 100px;
     position: absolute;
+	top: 0;
     visibility: hidden;
-    width: 100px;
 }
 
 .left {
     left: 0;
-    transform: translate( -50px, 50px );
-}
-
-.location {
-    position: absolute;
-    height: 150px;
 }
 
 .right {
     right: 0;
-    transform: translate( 50px, 50px );    
 }
 
 .stage {
