@@ -70,6 +70,12 @@ At the same time, the iOS application also connects to Watson IoT (MQTT).  As ne
 
 **TODO:** Store values in Cloudant (CouchDB).  Add charting to web page.
 
+##Signs
+
+The concept presented is to allow a smartphone to provide localization based on beacon information.  This application listens for beacons.  When one or more beacons are found, the closest one is singled out.  Based on the beacon information, a database query is made against Cloudant (NoSQL, CouchDB) to get textual information relative to the beacon (as beacons do not store this information themselves).  The resulting text is display on the screen.
+
+By tapping the screen, the user can have Watson translate the text into Spanish.  Once that result has been retrieved, Watson is then tasked to speak the copy using the device audio features.
+
 ##Stage
 
 A replacement for the "Basics" application, that shows physical location on the stage, rather than the technical details from the beacon(s).  Application running on iOS (Swift) looks for beacons, then determines the closest one.  Sends data about the closest one to Watson IoT.  A page in a browser is connected to Watson IoT, and subscribed for the location messages.  Highlights a side of the screen when the message arrives.
