@@ -12,7 +12,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
  
     let CREDENTIALS_PATH = NSBundle.mainBundle().pathForResource("Credentials", ofType: "plist")
     let BRAND_IDENTIFIER = "com.ibm"
-    let BRAND_UUID: String = "DAEE8ED6-73C8-47C2-A2F2-5491E44E9A97"
+    let BRAND_UUID: String = "A495DE30-C5B1-4B44-B512-1370F02D74DE"
     
     var beaconRegion: CLBeaconRegion!
     var credentials:NSDictionary!
@@ -77,27 +77,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
     // Beacon(s) found or lost
     func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
-        var closest:CLBeacon!
-        
-        // There are beacons
-        if beacons.count > 0 {
-            // Which one is the closest
-            for beacon:CLBeacon in beacons {
-                if closest == nil {
-                    closest = beacon
-                } else {
-                    if beacon.rssi < closest.rssi {
-                        closest = beacon
+        if beacons.count > 0 {                                      // There are beacons
+            for beacon in beacons {                                 // Iterate
+                if beacon.proximity == CLProximity.Immediate {      // Closest possible
+                    if lastMinor != beacon.minor {                  // Not already loaded
+                        debugPrint("Change to \(beacon.minor) (\(beacon.rssi)).")
+                        lastMinor = beacon.minor                    // Store new beacon
+                        lookup(beacon.major, minor: beacon.minor)   // Load details
                     }
                 }
-            }
-            
-            // Get copy for closest
-            // If there has been a change
-            if lastMinor != closest.minor {
-                // Store as currently viewing
-                lastMinor = closest.minor
-                lookup(closest.major, minor: closest.minor)
             }
         } else {
             // Hide copy
@@ -140,10 +128,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         let result = JSON(response.result.value!)
                         let copy = result["docs"][0]["copy"].stringValue
 
-                        // Put copy on the screen
-                        self.buttonTranslate.setTitle(copy, forState: UIControlState.Normal)
-                        self.buttonTranslate.hidden = false;
-                    
+                        // Main thread
+                        dispatch_async(dispatch_get_main_queue()) {
+                            // Put copy on the screen
+                            self.buttonTranslate.setTitle(copy, forState: UIControlState.Normal)
+                            self.buttonTranslate.hidden = false;
+                        }
+
                         debugPrint(result)
                     
                     // Bzzt!
